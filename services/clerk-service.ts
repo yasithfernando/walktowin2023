@@ -1,12 +1,13 @@
 import axios from "axios";
 
+const access_token = 'sk_test_FY0nY1O2aj1gSPHleBiFwXA1XMwCf6qA9hTWBoL0wJ';
 export const fetchAccessToken = async ():Promise<string> => {
   try {
     const response = await axios.get(
-      `https://api.clerk.dev/v1/users/user_2TiDgEdAsAiSDfRa34fo42JchHa/oauth_access_tokens/oauth_google`,
+      `http://localhost:3005/api/`,
       {
         headers: {
-          Authorization: `Bearer sk_test_FY0nY1O2aj1gSPHleBiFwXA1XMwCf6qA9hTWBoL0wJ`,
+          Authorization: `Bearer ${access_token}`,
         },
       }
     );

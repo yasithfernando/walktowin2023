@@ -6,7 +6,7 @@ export const sidebarLinks = [
   },
   {
     imgURL: "/assets/search.svg",
-    route: "/search",
+    route: "/teams-leaderboard",
     label: "Leaderboard",
   },
   {
@@ -30,6 +30,12 @@ export const sidebarLinks = [
   //   label: "Profile",
   // },
 ];
+
+export const leaderboardTabs = [
+  { route: "/female-leaderboard", label: "Female", icon: "/assets/female-icon.png" },
+  { route: "/teams-leaderboard", label: "Teams", icon: "/assets/teams-icon.png" },
+  { route: "/male-leaderboard", label: "Male", icon: "/assets/male-icon.png" },
+]
 
 export const profileTabs = [
   { value: "threads", label: "Threads", icon: "/assets/reply.svg" },
