@@ -8,6 +8,9 @@ import LeftSidebar from '@/components/shared/LeftSidebar'
 import RightSidebar from '@/components/shared/RightSidebar'
 import Bottombar from '@/components/shared/Bottombar'
 import LederboardTitleCard from '@/components/cards/LeaderboardTitleCard'
+import { AppProvider } from '@/context/AppContext'
+import { Suspense } from 'react'
+import Loading from './loading'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,6 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
+      <AppProvider>
       <html lang="en">
         <body className={inter.className}>
           <SignedIn>
@@ -33,7 +37,9 @@ export default function RootLayout({
               <section className='main-container'>
                 <LederboardTitleCard/>
                 <div className='w-full max-w-4xl'>
+                  <Suspense fallback={<Loading/>}>
                   {children}
+                  </Suspense>
                 </div>
               </section>
 
@@ -51,6 +57,7 @@ export default function RootLayout({
           
         </body>
       </html>
+      </AppProvider>
     </ClerkProvider>
   )
 }

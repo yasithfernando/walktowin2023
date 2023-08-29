@@ -1,15 +1,39 @@
 "use client"
 
 import Player from "@/constants/player";
-import LeaderboardItem from "./LeaderboardItem";
 import { useClerk } from "@clerk/nextjs";
+import LeaderboardItem from "../shared/LeaderboardItem";
+import { useAppContext } from "@/context/AppContext";
 
 interface Props {
-    rankData: any[] | Player[];
+    rankData: [{
+        id: string;
+        name: string;
+        email: string;
+        profileImage: string;
+        points: number;
+        steps: number;
+    }] | Player[];
 }
-const Leaderboard = ({rankData}:Props)=>{
+const MaleLeaderboard = ()=>{
     //const userEmail = useClerk().user?.primaryEmailAddress?.toString();
     //const userExist = rankData.find(player => player.email === userEmail);
+
+    const {malePlayers} = useAppContext();
+
+    const rankData = malePlayers ? malePlayers : [];
+    const profileImageUrl =  "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
+
+    console.log(rankData);
+
+    if(rankData.length === 0){
+        return null;
+    }
+
+    if(!rankData[1]?.name){
+        console.log(rankData);
+        return null;
+    }
 
     
     return (
@@ -19,7 +43,7 @@ const Leaderboard = ({rankData}:Props)=>{
 
                 <div id="second-place" className="flex items-end justify-center w-1/4 text-light-2">
                     <div className="flex flex-col justify-center items-center">
-                        <img src={rankData[1].profileImage} alt="profile" className="rounded-full h-20 w-20 border-purple-400 border-2"/>
+                        <img src={profileImageUrl} alt="profile" className="rounded-full h-20 w-20 border-purple-400 border-2"/>
                         <div className="flex justify-center items-center rounded-full w-7 h-7 bg-gradient-to-tl from-violet-500 to-fuchsia-500 -mt-4">
                             <p className="text-light-2 text-body-bold">2</p>
                         </div>
@@ -30,7 +54,7 @@ const Leaderboard = ({rankData}:Props)=>{
 
                 <div id="first-place" className="flex flex-col justify-center items-center w-2/4 lg:w-2/6 text-light-2">
                     <div className="flex flex-col justify-center items-center">
-                        <img src={rankData[0].profileImage} alt="profile" className="rounded-full h-28 w-28 lg:h-32 lg:w-32 border-yellow-400 border-2"/>
+                        <img src={profileImageUrl} alt="profile" className="rounded-full h-28 w-28 lg:h-32 lg:w-32 border-yellow-400 border-2"/>
                         <div className="flex justify-center items-center rounded-full w-7 h-7 bg-gradient-to-tl from-yellow-500 to-amber-500 -mt-4">
                             <p className="text-light-2 text-body-bold">1</p>
                         </div>
@@ -41,7 +65,7 @@ const Leaderboard = ({rankData}:Props)=>{
 
                 <div id="third-place" className="flex items-end justify-center w-1/4 text-light-2">
                     <div className="flex flex-col justify-center items-center">
-                        <img src={rankData[2].profileImage} alt="profile" className="rounded-full h-20 w-20 border-purple-400 border-2"/>
+                        <img src={profileImageUrl} alt="profile" className="rounded-full h-20 w-20 border-purple-400 border-2"/>
                         <div className="flex justify-center items-center rounded-full w-7 h-7 bg-gradient-to-tl from-violet-500 to-fuchsia-500 -mt-4">
                             <p className="text-light-2 text-body-bold">3</p>
                         </div>
@@ -67,4 +91,4 @@ const Leaderboard = ({rankData}:Props)=>{
     )
 }
 
-export default Leaderboard;
+export default MaleLeaderboard;

@@ -8,6 +8,8 @@ import { useState } from "react";
 function SyncBanner(){
     const[loading, setLoading] = useState(false);
 
+    const[steps, setSteps] = useState(null);
+
     const[accessToken, setAccessToken] = useState('');
 
     const link = {
@@ -40,6 +42,7 @@ function SyncBanner(){
     const testSync = () => {
         fetchStepsFromGoogle(accessToken).then((data) => {
             console.log(data);
+            setSteps(data[0].stepCount);
         })
     }
     
@@ -61,7 +64,7 @@ function SyncBanner(){
                     {loading ? "Syncing..." : "Sync Steps"}
                 </button>
 
-                <button onClick={testSync} className="bg-dark-1 text-light-2">TEST STEPS SYNC</button>
+                <button onClick={testSync} className="bg-dark-1 text-light-2 hidden">TEST STEPS SYNC</button>
 
             </div>
 

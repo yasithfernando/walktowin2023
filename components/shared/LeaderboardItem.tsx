@@ -9,16 +9,17 @@ import {
 
 
 
-interface LeaderboardItemProps {
-  player: Player;
+interface Props {
+  player: any;
 }
 
-const LeaderboardItem: React.FC<LeaderboardItemProps> = ({ player }) => {
+const LeaderboardItem = ({player}:Props) => {
+  const randomAvatar =`https://source.boringavatars.com/beam/50/${player.name.split(" ")[0]}%20${player.name.split(" ")[1]}?colors=582770,773D94,943D8A,C22760,E81764`
   return (
       <Popover>
         <div className="flex items-center p-4 text-light-2 cursor-pointer mt-1">
         <div className="w-12 h-12 mr-4">
-            <img src={player.profileImage} alt={`Avatar of ${player.name}`} className="w-full h-full rounded-full" />
+            <img src={player.profileImage ? player.profileImage : randomAvatar} alt={`Avatar of ${player.name}`} className="w-full h-full rounded-full" />
         </div>
         <div className="flex-grow gap-1">
         
@@ -36,7 +37,7 @@ const LeaderboardItem: React.FC<LeaderboardItemProps> = ({ player }) => {
         </div>
         <div className="flex flex-row gap-2">
             
-            <p>{player.points}</p>
+            <p className='text-base-semibold'>{player.points}</p>
         </div>
             
 

@@ -5,7 +5,7 @@ export const sidebarLinks = [
     label: "Home",
   },
   {
-    imgURL: "/assets/search.svg",
+    imgURL: "/assets/leaderboard-icon.png",
     route: "/teams-leaderboard",
     label: "Leaderboard",
   },

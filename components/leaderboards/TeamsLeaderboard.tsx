@@ -1,13 +1,13 @@
 "use client"
 
 import Player from "@/constants/player";
-import LeaderboardItem from "./LeaderboardItem";
 import { useClerk } from "@clerk/nextjs";
+import LeaderboardItem from "../shared/LeaderboardItem";
 
 interface Props {
     rankData: any[] | Player[];
 }
-const Leaderboard = ({rankData}:Props)=>{
+const TeamsLeaderboard = ({rankData}:Props)=>{
     //const userEmail = useClerk().user?.primaryEmailAddress?.toString();
     //const userExist = rankData.find(player => player.email === userEmail);
 
@@ -67,4 +67,4 @@ const Leaderboard = ({rankData}:Props)=>{
     )
 }
 
-export default Leaderboard;
+export default TeamsLeaderboard;

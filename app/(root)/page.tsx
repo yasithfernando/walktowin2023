@@ -1,8 +1,18 @@
+
 import SyncBanner from "@/components/banners/SyncBanner";
 import SummaryCard from "@/components/cards/SummaryCard";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, currentUser } from "@clerk/nextjs";
+import { Suspense } from "react";
+import Loading from "./loading";
 
-export default function Home() {
+
+async function Home() {
+  const loggedInUser = await currentUser();
+
+  if(!loggedInUser) return null;
+
+
+
   return (
     <div>
       {/* <h1 className="head-text text-left">Home</h1> */}
@@ -11,3 +21,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home;

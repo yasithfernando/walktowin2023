@@ -1,51 +1,28 @@
 "use client"
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Chart from 'chart.js/auto';
+
+import { useAppContext } from "@/context/AppContext";
+
 
 interface Props {
   stepsForChart: number[]; // Assuming you pass an array of step data
+  steps: number;
 }
 
-const SummaryCard = ({ steps, points, rank } : any) => {
-    const chartRef = useRef<HTMLCanvasElement | null>(null);
-    const chartInstanceRef = useRef<Chart | null>(null);
+const SummaryCard = ({ steps2, points2, rank } : any) => {
 
-    useEffect(() => {
-      if (chartRef.current) {
-        // Destroy previous chart instance if exists
-        if (chartInstanceRef.current) {
-            chartInstanceRef.current.destroy();
-        }
-        const ctx = chartRef.current.getContext('2d');
+    const {user} = useAppContext();
+    //const {steps, setSteps} = useState();
+    //const {points, setPoints} = useState(0);
 
-        new Chart(ctx!, {
-            type: 'bar',
-            data: {
-            labels: ['', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-            datasets: [
-                {
-                label: 'Steps',
-                data: [12,23,9,13,4,8,15,12,23,9,13,4,8,15],
-                backgroundColor: 'hsla(244, 100%, 75%, 1)', // Adjust colors
-                borderColor: 'rgba(75, 192, 192, 1)', // Adjust colors
-                borderWidth: 0,
-                barPercentage: 0.3, // Adjust this value (0 to 1) for bar width
-                categoryPercentage: 1, // Keep this at 1 for equal spacing between bars
-                },
-            ],
-            },
-            options: {
-            scales: {
-                y: {
-                beginAtZero: true,
-                display: false,
-                },
-            },
-            },
-        });
-    }
-    })
+    //setSteps(user?.steps);
+    //setPoints(user?.points);
+
+    const steps = user?.steps;
+    const points = user?.points;
+    //const rank = user?.rank;
 
     return (
         <section className="flex flex-col justify-center items-center">
@@ -65,8 +42,8 @@ const SummaryCard = ({ steps, points, rank } : any) => {
                         <canvas ref={chartRef}></canvas>
                     </div> */}
 
-                    <div className="text-center w-full">
-                        <h1 className="text-heading1-bold text-light-1">{steps}</h1>
+                    <div className={`flex flex-col text-center w-full items-center justify-center`}>
+                        <h1 className={`text-heading1-bold text-light-1 ${!steps && 'h-12 w-1/2 rounded-lg animate-pulse bg-glassmorphism'}`}>{steps}</h1>
                         <p className=" text-gray-300 text-subtle-medium">You are on track!</p>
                     </div>
 
@@ -78,7 +55,7 @@ const SummaryCard = ({ steps, points, rank } : any) => {
                                 width={38} 
                                 height={38} 
                             />
-                            <h2 className="text-light-2 text-body-bold">{points}</h2>
+                            <h2 className={`text-light-2 text-body-bold ${!points && 'h-6 w-1/2 rounded-lg animate-pulse bg-glassmorphism'}`}>{points}</h2>
                             <h2 className="font-mono text-light-2 text-body-normal">Points</h2>
                         </div>
                         <div className="flex flex-col justify-center items-center w-full">

@@ -1,6 +1,58 @@
 "use server"
+import { currentUser } from "@clerk/nextjs";
 import axios from "axios";
 import dayjs from "dayjs";
+
+//function tro fetch user,teams,all players from xwb.superglu.clud/api/v1/user using axios add gmail to header and use promise all
+export async function fetchAll():Promise<any> {
+  console.log("fetching data")
+
+  const currentLoggedUser = await currentUser();
+  const loggedInEmail = currentLoggedUser?.emailAddresses[0].emailAddress;
+  
+  try{
+
+    const [userResponse,teamsResponse, femalePlayersResponse, malePlayersResponse, allPlayersResponse] = await Promise.all([
+    axios.get(`https://xwb-api.superglu.cloud/api/v1/playersync`, { headers: { gmail: `${loggedInEmail}` } }),
+    axios.get(`https://xwb-api.superglu.cloud/api/v1/leaderboard/topteams`),
+    axios.get(`https://xwb-api.superglu.cloud/api/v1/leaderboard/topfemaleplayers`),
+    axios.get(`https://xwb-api.superglu.cloud/api/v1/leaderboard/topmalePlayers`),
+    axios.get(`https://xwb-api.superglu.cloud/api/v1/leaderboard/topplayers`)
+  ]);  
+    const user = userResponse.data;
+    const teams = teamsResponse.data;
+    const femalePlayers = femalePlayersResponse.data;
+    const malePlayers = malePlayersResponse.data;
+    const allPlayers = allPlayersResponse.data;
+
+
+    return { user, teams, femalePlayers, malePlayers, allPlayers, loggedInEmail};
+
+
+  }catch(error:any){
+    console.error('Error fetching data:', error.message);
+    throw error;
+  }
+
+}
+
+
+//function to fetch user from xwb.superglu.clud/api/v1/user using axios add gmail to header
+export async function fetchUser():Promise<any> {
+  const currentLoggedUser = await currentUser();
+  const loggedInEmail = currentLoggedUser?.emailAddresses[0].emailAddress;
+  const response = await axios.get(
+    `https://xwb-api.superglu.cloud/api/v1/playersync`
+    ,
+    {
+      headers: {
+        gmail: `${loggedInEmail}`,
+      },
+    }
+  );
+  const user = response.data;
+  return user;
+}
 
 export async function fetchAccessToken(userId:string):Promise<any> {
   const CLERK_URL = `https://api.clerk.dev/v1/users/${userId}/oauth_access_tokens/oauth_google`;

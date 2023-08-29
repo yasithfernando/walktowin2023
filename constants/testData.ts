@@ -7,7 +7,7 @@ export const testRankData: Player[] = [
     name: "John Doe",
     steps: 10000,
     points: 125,
-    id: 1,
+    id: 23434,
     email: "iyfernando42@gmail.com",
   },
   {
@@ -16,7 +16,7 @@ export const testRankData: Player[] = [
     name: "Yajn Erik",
     steps: 10000,
     points: 125,
-    id: 2,
+    id: 5645354,
     email: "test@gmail.com",
   },
   {
@@ -25,7 +25,7 @@ export const testRankData: Player[] = [
     name: "Yasith Fernando",
     steps: 10000,
     points: 125,
-    id: 3,
+    id: 53464,
     email: "test@gmail.com",
   },
   {
@@ -34,7 +34,7 @@ export const testRankData: Player[] = [
     name: "John Doe",
     steps: 10000,
     points: 125,
-    id: 1,
+    id: 356457,
     email: "test@gmail.com",
   },
   {
@@ -43,7 +43,7 @@ export const testRankData: Player[] = [
     name: "Yajn Erik",
     steps: 10000,
     points: 125,
-    id: 2,
+    id: 2353245,
     email: "test@gmail.com",
   },
   {
@@ -52,7 +52,7 @@ export const testRankData: Player[] = [
     name: "Yasith Fernando",
     steps: 10000,
     points: 125,
-    id: 3,
+    id: 6747,
     email: "test@gmail.com",
   },
   {
@@ -61,7 +61,7 @@ export const testRankData: Player[] = [
     name: "John Doe",
     steps: 10000,
     points: 125,
-    id: 1,
+    id: 67856746,
     email: "test@gmail.com",
   },
   {
@@ -70,7 +70,7 @@ export const testRankData: Player[] = [
     name: "Yajn Erik",
     steps: 10000,
     points: 125,
-    id: 2,
+    id: 457457,
     email: "test@gmail.com",
   },
   {
@@ -79,7 +79,7 @@ export const testRankData: Player[] = [
     name: "Yasith Fernando",
     steps: 10000,
     points: 125,
-    id: 3,
+    id: 547457,
     email: "test@gmail.com",
   },
 ];

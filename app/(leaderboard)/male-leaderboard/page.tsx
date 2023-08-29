@@ -1,3 +1,4 @@
+import MaleLeaderboard from "@/components/leaderboards/MaleLeaderboard";
 import Leaderboard from "@/components/shared/Leaderboard";
 import Player from "@/constants/player";
 import { testRankData } from "@/constants/testData";
@@ -7,7 +8,8 @@ async function Page(){
 
     return (
         <div className="flex flex-col justify-center items-center">
-            <Leaderboard rankData = {testData}/>
+            {/* <Leaderboard rankData = {testData}/> */}
+            <MaleLeaderboard/>
         </div>
     )
 }
