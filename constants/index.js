@@ -1,3 +1,22 @@
+export const competitionDetails = {
+  startDate: 1690828200000,
+  endDate: 1693420200000,
+};
+
+export const apiURLs = {
+  getUser: "https://xwb-api.superglu.cloud/api/v1/playersync", //Gmail Header
+  getAllPlayers: "https://xwb-api.superglu.cloud/api/v1/leaderboard/topplayers",
+  getAnyPlayer: "https://xwb-api.superglu.cloud/api/v1/leaderboard/topplayers/",
+  getFemalePlayers:
+    "https://xwb-api.superglu.cloud/api/v1/leaderboard/topfemaleplayers",
+  getMalePlayers:
+    "https://xwb-api.superglu.cloud/api/v1/leaderboard/topmaleplayers",
+  getTeams: "https://xwb-api.superglu.cloud/api/v1/leaderboard/topteams",
+  getTeam: "https://xwb-api.superglu.cloud/api/v1/leaderboard/topteams/",
+
+  syncSteps: "http://localhost:3003/api/v1/sync", //Gmail Header, Steps Body
+};
+
 export const sidebarLinks = [
   {
     imgURL: "/assets/home.svg",
@@ -6,7 +25,7 @@ export const sidebarLinks = [
   },
   {
     imgURL: "/assets/leaderboard-icon.png",
-    route: "/teams-leaderboard",
+    route: "/leaderboard/teams",
     label: "Leaderboard",
   },
   {
@@ -32,9 +51,9 @@ export const sidebarLinks = [
 ];
 
 export const leaderboardTabs = [
-  { route: "/female-leaderboard", label: "Female", icon: "/assets/female-icon.png" },
-  { route: "/teams-leaderboard", label: "Teams", icon: "/assets/teams-icon.png" },
-  { route: "/male-leaderboard", label: "Male", icon: "/assets/male-icon.png" },
+  //{ route: "/female-leaderboard", label: "Female", icon: "/assets/female-icon.png" },
+  { route: "/leaderboard/teams", label: "Teams", icon: "/assets/teams-icon.png" },
+  { route: "/leaderboard/individual", label: "Individual", icon: "/assets/male-icon.png" },
 ]
 
 export const profileTabs = [

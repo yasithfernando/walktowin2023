@@ -15,13 +15,13 @@ interface Props {
         steps: number;
     }] | Player[];
 }
-const MaleLeaderboard = ()=>{
+const IndividualLeaderboard = ()=>{
     //const userEmail = useClerk().user?.primaryEmailAddress?.toString();
     //const userExist = rankData.find(player => player.email === userEmail);
 
-    const {malePlayers} = useAppContext();
+    const {allPlayers} = useAppContext();
 
-    const rankData = malePlayers ? malePlayers : [];
+    const rankData = allPlayers ? allPlayers : [];
     const profileImageUrl =  "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
 
     console.log(rankData);
@@ -82,8 +82,8 @@ const MaleLeaderboard = ()=>{
                 )
             ): (<div></div>)} */}
             <div>
-                {rankData.map(player => (
-                    <LeaderboardItem key={player.id} player={player}/>
+                {rankData.map((player,index) => (
+                    <LeaderboardItem key={player.id} player={player} index={index}/>
                 ))}
             </div>
 
@@ -91,4 +91,4 @@ const MaleLeaderboard = ()=>{
     )
 }
 
-export default MaleLeaderboard;
+export default IndividualLeaderboard;

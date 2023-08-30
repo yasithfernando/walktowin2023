@@ -1,5 +1,5 @@
 "use client"
-import { fetchAll, fetchUser } from '@/lib/actions/user.actions';
+import { fetchAll } from '@/lib/actions/user.actions';
 import { useClerk } from '@clerk/nextjs';
 // context/AppContext.tsx
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
@@ -13,7 +13,7 @@ interface UserData {
 }
 
 interface TeamData {
-  id: string;
+  _id: string;
   name: string;
   steps: number;
   points: number;
@@ -55,25 +55,25 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         // Set the fetched data using setUser and setTeams
         const fetchDataAndSetContext = async () => {
             try {
-                if(!user || !teams || !allPlayers || !malePlayers || !femalePlayers || !competition){
-                    const {user, teams,femalePlayers,malePlayers, allPlayers, loggedInEmail} = await fetchAll();
+                if(!teams || !allPlayers || !malePlayers || !femalePlayers || !competition){
+                    const {teams,femalePlayers,malePlayers, allPlayers} = await fetchAll();
                     setCompetition({
                         numberOfPlayers: allPlayers.length,
                         numberOfTeams: teams.length
                     });
 
-                    if(user.error){
-                        setErrorState(user.message);
-                        console.log(errorState);
-                        console.log(user);
+                    // if(user.error){
+                    //     setErrorState(user.message);
+                    //     console.log(errorState);
+                    //     console.log(user);
                         
-                    }
-                    setUser({
-                        id: loggedInEmail,
-                        name: user.name,
-                        steps: user.steps,
-                        points: user.points
-                    });
+                    // }
+                    // setUser({
+                    //     id: loggedInEmail,
+                    //     name: user.name,
+                    //     steps: user.steps,
+                    //     points: user.points
+                    // });
 
                     //console.log(user);
 

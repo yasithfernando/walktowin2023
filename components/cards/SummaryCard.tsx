@@ -1,9 +1,13 @@
 "use client"
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import Chart from 'chart.js/auto';
-
-import { useAppContext } from "@/context/AppContext";
+import ErrorView from "../notifications/ErrorView";
+import SummaryLoading from "../loading-skeletons/SummaryLoading";
+import { useCompetition, useUser } from "@/context/context";
+import { useState } from "react";
+import { fetchAccessToken, syncStepsToBackend } from "@/lib/actions/user.actions";
+import { fetchStepCounts } from '@/lib/actions/google.actions';
+import { useClerk } from "@clerk/nextjs";
+import SyncButton from "../shared/SyncButton";
 
 
 interface Props {
@@ -11,18 +15,42 @@ interface Props {
   steps: number;
 }
 
-const SummaryCard = ({ steps2, points2, rank } : any) => {
+const SummaryCard = ({ gmail} : any) => {
 
-    const {user} = useAppContext();
-    //const {steps, setSteps} = useState();
-    //const {points, setPoints} = useState(0);
+    const {user, isLoading, isError} = useUser(gmail);
+    const {allPlayers,isAllPlayersLoading,isErrorInAllPlayers} = useCompetition();
+    const userId = useClerk().user?.id as string;
 
-    //setSteps(user?.steps);
-    //setPoints(user?.points);
+    let isSyncing = false;
 
-    const steps = user?.steps;
+
+    if(isLoading || isAllPlayersLoading)return <SummaryLoading></SummaryLoading>
+
+    if(isError || isErrorInAllPlayers) return <div className="text-light-2 text-body-bold">Error...</div>
+
+    if(user.error){
+        return (<ErrorView errorMessage={user.message}></ErrorView>
+        )
+    }
+
     const points = user?.points;
-    //const rank = user?.rank;
+    let steps = user?.steps;
+
+    let rank = 0;
+
+    const numberOfPlayers = allPlayers?.length;
+
+    const index = allPlayers?.findIndex(
+        (player:any)=>{
+            return (player.steps === user?.steps && player.points === user?.points)
+        })
+
+        if(index !== undefined){
+            rank = index+1;
+        }
+
+    
+
 
     return (
         <section className="flex flex-col justify-center items-center">
@@ -30,17 +58,8 @@ const SummaryCard = ({ steps2, points2, rank } : any) => {
                 
                 <div className="flex flex-col justify-center rounded-lg mt-2 w-full">
                     <div className={`flex flex-row items-center justify-center w-full mb-2`}>
-                        {/* <Image className="mr-2 border"
-                        src="/assets/icons/step-icon.svg" 
-                        alt="Step Icon" 
-                        width={24} 
-                        height={24} /> */}
                         <h1 className="text-light-2 text-heading3-bold">Steps</h1>
                     </div>
-                    {/* Bar chart showing step summary of last 7 days */}
-                    {/* <div className="w-full h-auto">
-                        <canvas ref={chartRef}></canvas>
-                    </div> */}
 
                     <div className={`flex flex-col text-center w-full items-center justify-center`}>
                         <h1 className={`text-heading1-bold text-light-1 ${!steps && 'h-12 w-1/2 rounded-lg animate-pulse bg-glassmorphism'}`}>{steps}</h1>
@@ -65,21 +84,19 @@ const SummaryCard = ({ steps2, points2, rank } : any) => {
                                 width={38} 
                                 height={38} 
                             />
-                            <h2 className="text-light-2 text-body-bold">{rank}/126</h2>
+                            <h2 className="text-light-2 text-body-bold">{rank}/{numberOfPlayers}</h2>
                             <h2 className="font-mono text-light-2 text-body-normal">Rank</h2>
                         </div>
                     </div>
                 </div>
 
-                <div className="flex flex-col items-center justify-center rounded-lg mt-2 w-full max-md:hidden">
+                {/* <div className="flex flex-col items-center justify-center rounded-lg mt-2 w-full max-md:hidden">
                     <div className="text-light-2">Test</div>
-                </div>
+                </div> */}
                 
             </div>
 
-            <button className="bg-gradient-to-tr from-violet-500 to-fuchsia-500 text-light-1 text-heading3-bold w-4/5 h-14 rounded-2xl mt-4">
-                SYNC STEPS
-            </button>
+            <SyncButton></SyncButton>
             <p className="text-slate-300 text-subtle-medium mt-2">Click to sync steps from GoogleFit</p>
         </section>
     )

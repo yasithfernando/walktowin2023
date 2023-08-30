@@ -14,7 +14,10 @@ function Bottombar(){
                 {sidebarLinks.map((link)=>{
                     //const isActive = (pathname.split("/")[-1].includes(link.route) && link.route.length > 0)|| pathname === link.route;
 
-                    const isActive = (pathname.includes(link.route) && link.route.length > 0) && pathname === link.route;
+                    let isActive = (pathname.includes(link.route) && link.route.length > 0) && pathname === link.route;
+                    if((link.label === "Leaderboard") && (pathname.includes("/leaderboard"))){
+                        isActive = true;
+                    }
                     return(
                         <Link
                         href={link.route}

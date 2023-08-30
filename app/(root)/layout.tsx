@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <AppProvider>
+    //<AppProvider>
     <ClerkProvider appearance={{
         baseTheme: dark,
       }}>
@@ -55,6 +55,6 @@ export default function RootLayout({
         </body>
       </html>
     </ClerkProvider>
-      </AppProvider>
+      //</AppProvider>
   )
 }
