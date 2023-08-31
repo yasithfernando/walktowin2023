@@ -2,30 +2,41 @@
 import { apiURLs } from "@/constants";
 import axios from "axios";
 
+//function to fetch user
+export async function fetchUser(gmail:string){
+  console.log("fetching user")
+  try{
+    const response = await axios.get(apiURLs.getUser, {
+      headers: {
+        gmail: gmail
+      },
+    });
+    const user = response.data;
+    return user;
+  }catch(error:any){
+    console.error('Error fetching user:', error.message);
+    throw error;
+  }
+}
+
 
 //function tro fetch user,teams,all players from xwb.superglu.clud/api/v1/user using axios add gmail to header and use promise all
 export async function fetchAll():Promise<any> {
-  console.log("fetching data")
-
-  //const currentLoggedUser = await currentUser();
-  //const loggedInEmail = currentLoggedUser?.emailAddresses[0].emailAddress;
-  
+  console.log("fetching data")  
   try{
 
-    const [teamsResponse, femalePlayersResponse, malePlayersResponse, allPlayersResponse] = await Promise.all([
+    const [teamsResponse, allPlayersResponse] = await Promise.all([
     axios.get(apiURLs.getTeams),
-    axios.get(apiURLs.getFemalePlayers),
-    axios.get(apiURLs.getMalePlayers),
     axios.get(apiURLs.getAllPlayers)
   ]);  
-    const teams = teamsResponse.data;
-    const femalePlayers = femalePlayersResponse.data;
-    const malePlayers = malePlayersResponse.data;
-    const allPlayers = allPlayersResponse.data;
+    const updatedTeams = teamsResponse.data;
 
+    const updatedAllPlayers = allPlayersResponse.data;
 
-    return {teams, femalePlayers, malePlayers, allPlayers};
-
+    return {
+      updatedTeams,
+      updatedAllPlayers
+    }
 
   }catch(error:any){
     console.error('Error fetching data:', error.message);
@@ -48,7 +59,10 @@ export async function fetchAccessToken(userId:string){
     return data[0].token;
 
   } catch (error) {
-    return error;
+    const errorInFetch = {
+      message: "Error fetching access token"
+    };
+    return errorInFetch;
   }
 }
 

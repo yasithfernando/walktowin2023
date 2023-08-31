@@ -1,30 +1,13 @@
 "use client"
 
-import Player from "@/constants/player";
-import { useClerk } from "@clerk/nextjs";
 import LeaderboardItem from "../shared/LeaderboardItem";
-import { useAppContext } from "@/context/AppContext";
+import { useLeaderboardContext } from "@/context/LeaderboardContext";
 
-interface Props {
-    rankData: [{
-        id: string;
-        name: string;
-        email: string;
-        profileImage: string;
-        points: number;
-        steps: number;
-    }] | Player[];
-}
 const IndividualLeaderboard = ()=>{
-    //const userEmail = useClerk().user?.primaryEmailAddress?.toString();
-    //const userExist = rankData.find(player => player.email === userEmail);
-
-    const {allPlayers} = useAppContext();
+    const {allPlayers} = useLeaderboardContext();
 
     const rankData = allPlayers ? allPlayers : [];
-    const profileImageUrl =  "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-
-    console.log(rankData);
+    const profileImageUrl =  "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50";
 
     if(rankData.length === 0){
         return null;

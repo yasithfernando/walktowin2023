@@ -3,7 +3,7 @@
 import Player from "@/constants/player";
 import { useClerk } from "@clerk/nextjs";
 import LeaderboardItem from "../shared/LeaderboardItem";
-import { useAppContext } from "@/context/AppContext";
+import { useLeaderboardContext } from "@/context/LeaderboardContext";
 
 interface Props {
     rankData: [{
@@ -17,7 +17,7 @@ interface Props {
 }
 const TeamsLeaderboard = ()=>{
     
-    const {teams} = useAppContext();
+    const {teams} = useLeaderboardContext();
 
     const rankData = teams ? teams : [];
     const profileImageUrl1 =  `https://source.boringavatars.com/beam/50/xians%20walk?colors=582770,773D94,943D8A,C22760,E81764`;

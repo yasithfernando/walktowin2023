@@ -8,7 +8,7 @@ import LeftSidebar from '@/components/shared/LeftSidebar'
 import RightSidebar from '@/components/shared/RightSidebar'
 import Bottombar from '@/components/shared/Bottombar'
 import LederboardTitleCard from '@/components/cards/LeaderboardTitleCard'
-import { AppProvider } from '@/context/AppContext'
+import { LeaderboardProvider } from '@/context/LeaderboardContext'
 import { Suspense } from 'react'
 import Loading from './loading'
 
@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <AppProvider>
+     
       <html lang="en">
         <body className={inter.className}>
           <SignedIn>
@@ -38,7 +38,9 @@ export default function RootLayout({
                 <LederboardTitleCard/>
                 <div className='w-full max-w-4xl'>
                   <Suspense fallback={<Loading/>}>
-                  {children}
+                     <LeaderboardProvider>
+                      {children}
+                    </LeaderboardProvider>
                   </Suspense>
                 </div>
               </section>
@@ -57,7 +59,6 @@ export default function RootLayout({
           
         </body>
       </html>
-      </AppProvider>
     </ClerkProvider>
   )
 }

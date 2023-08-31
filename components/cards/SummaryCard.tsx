@@ -15,13 +15,18 @@ interface Props {
   steps: number;
 }
 
-const SummaryCard = ({ gmail} : any) => {
+const SummaryCard = ({ gmail, updateLastSyncedDate} : any) => {
 
+    const [player, setPlayer] = useState<any>({
+        points: 0,
+        steps: 0,
+    });
     const {user, isLoading, isError} = useUser(gmail);
     const {allPlayers,isAllPlayersLoading,isErrorInAllPlayers} = useCompetition();
     const userId = useClerk().user?.id as string;
 
-    let isSyncing = false;
+    const [isSyncing, setIsSyncing] = useState(false);
+    const [syncError, setSyncError] = useState(false);
 
 
     if(isLoading || isAllPlayersLoading)return <SummaryLoading></SummaryLoading>
@@ -34,8 +39,7 @@ const SummaryCard = ({ gmail} : any) => {
     }
 
     const points = user?.points;
-    let steps = user?.steps;
-
+    const steps = user?.steps;
     let rank = 0;
 
     const numberOfPlayers = allPlayers?.length;
@@ -49,7 +53,33 @@ const SummaryCard = ({ gmail} : any) => {
             rank = index+1;
         }
 
-    
+    const syncSteps = async () => {
+        setIsSyncing(true);
+        setSyncError(false);
+
+        try {
+            const accessToken = await fetchAccessToken(userId);
+            const stepCounts = await fetchStepCounts(accessToken);
+            console.log(stepCounts);
+            
+            const syncResponse = await syncStepsToBackend(stepCounts.result, gmail);
+            console.log(syncResponse);
+
+            setIsSyncing(false);
+            setSyncError(false);
+            updateLastSyncedDate(new Date().toLocaleString());
+            setPlayer({
+                points: syncResponse.totalPoints,
+                steps: syncResponse.totalSteps,
+            })
+            user.points = syncResponse.totalPoints;
+            user.steps = syncResponse.totalSteps;
+        } catch (error) {
+            console.error(error);
+            setIsSyncing(false);
+            setSyncError(true);
+        }
+    }
 
 
     return (
@@ -62,7 +92,7 @@ const SummaryCard = ({ gmail} : any) => {
                     </div>
 
                     <div className={`flex flex-col text-center w-full items-center justify-center`}>
-                        <h1 className={`text-heading1-bold text-light-1 ${!steps && 'h-12 w-1/2 rounded-lg animate-pulse bg-glassmorphism'}`}>{steps}</h1>
+                        <h1 className={`text-heading1-bold text-light-1 ${!user?.steps && 'h-12 w-1/2 rounded-lg animate-pulse bg-glassmorphism'}`}>{user?.steps}</h1>
                         <p className=" text-gray-300 text-subtle-medium">You are on track!</p>
                     </div>
 
@@ -74,7 +104,7 @@ const SummaryCard = ({ gmail} : any) => {
                                 width={38} 
                                 height={38} 
                             />
-                            <h2 className={`text-light-2 text-body-bold ${!points && 'h-6 w-1/2 rounded-lg animate-pulse bg-glassmorphism'}`}>{points}</h2>
+                            <h2 className={`text-light-2 text-body-bold ${!user?.points && 'h-6 w-1/2 rounded-lg animate-pulse bg-glassmorphism'}`}>{user?.points}</h2>
                             <h2 className="font-mono text-light-2 text-body-normal">Points</h2>
                         </div>
                         <div className="flex flex-col justify-center items-center w-full">
@@ -96,7 +126,15 @@ const SummaryCard = ({ gmail} : any) => {
                 
             </div>
 
-            <SyncButton></SyncButton>
+            <div className="flex flex-col w-full justify-center items-center">
+            <button onClick={syncSteps} className={`flex justify-center items-center bg-gradient-to-tr from-violet-500 to-fuchsia-500 text-light-1 text-heading3-bold w-4/5 h-14 rounded-2xl mt-4 ${isSyncing && 'bg-amber-500 '}`}>
+                <svg className={`animate-spin w-7 h-7 mr-2 ${!isSyncing && 'hidden'}`} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#ffffff" d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"/>
+                </svg>
+                {isSyncing ? 'SYNCING...' : 'SYNC STEPS'}
+            </button>
+            {syncError ? <ErrorView errorMessage="Sync Failed! Please try again later."></ErrorView>: ''}
+        </div>
             <p className="text-slate-300 text-subtle-medium mt-2">Click to sync steps from GoogleFit</p>
         </section>
     )

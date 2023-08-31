@@ -14,7 +14,7 @@ export const apiURLs = {
   getTeams: "https://xwb-api.superglu.cloud/api/v1/leaderboard/topteams",
   getTeam: "https://xwb-api.superglu.cloud/api/v1/leaderboard/topteams/",
 
-  syncSteps: "http://localhost:3003/api/v1/sync", //Gmail Header, Steps Body
+  syncSteps: "https://xwb-api.superglu.cloud/api/v1/sync", //Gmail Header, Steps Body
 };
 
 export const sidebarLinks = [
