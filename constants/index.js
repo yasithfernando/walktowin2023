@@ -1,6 +1,6 @@
 export const competitionDetails = {
-  startDate: 1690828200000,
-  endDate: 1693420200000,
+  startDate: 1692037800000,
+  endDate: 1694716200000,
 };
 
 export const apiURLs = {
@@ -29,14 +29,14 @@ export const sidebarLinks = [
     label: "Leaderboard",
   },
   {
-    imgURL: "/assets/heart.svg",
-    route: "/activity",
-    label: "Activity",
+    imgURL: "/assets/faq-icon.png",
+    route: "/faq",
+    label: "FAQs",
   },
   {
-    imgURL: "/assets/create.svg",
-    route: "/create-thread",
-    label: "Test",
+    imgURL: "/assets/privacy-policy.png",
+    route: "/privacy-policy",
+    label: "Privacy",
   },
   // {
   //   imgURL: "/assets/community.svg",

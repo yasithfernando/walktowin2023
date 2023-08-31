@@ -1,11 +1,6 @@
 "use client"
-
-import { useUser } from "@/context/context";
-import ErrorView from "../notifications/ErrorView";
 import SummaryCard from "../cards/SummaryCard";
-import HomeLoading from "../loading-skeletons/HomeLoading";
-import { useEffect, useState } from "react";
-import { fetchUser } from "@/lib/actions/user.actions";
+import {useState } from "react";
 
 
 const SyncBanner  = ({gmail}:any)=>{    
