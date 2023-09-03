@@ -6,7 +6,6 @@ import { useCompetition, useUser } from "@/context/context";
 import { useState } from "react";
 import { fetchAccessToken, syncStepsToBackend } from "@/lib/actions/user.actions";
 import { fetchStepCounts } from '@/lib/actions/google.actions';
-import SyncButton from "../shared/SyncButton";
 
 
 interface Props {
