@@ -22,24 +22,34 @@ const requestBodytoFilterUserInput = {
 };
 
 export const fetchStepCounts = async (accessToken: string) => {
-
   try {
-    const response = await axios.post(BASE_URL, requestBodytoFilterUserInput, {
+    console.log(accessToken)
+    const response = await fetch(BASE_URL, {
+      method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(requestBodytoFilterUserInput),
     });
 
-    const data = response.data;
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.error.message);
+    }
 
-    //Add all steps and reject manually added data
+    const data = await response.json();
+
+    // Add all steps and reject manually added data
     const result = bucketStepsByDate(data);
 
     return result;
   } catch (error) {
-    console.error("Error fetching step counts:", error);
-    throw new Error("Error fetching step counts");
+    // Log the error for debugging purposes
+    console.error(error);
+
+    // Re-throw the error for the caller to handle
+    throw error;
   }
 };
 

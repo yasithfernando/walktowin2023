@@ -6,7 +6,6 @@ import { useCompetition, useUser } from "@/context/context";
 import { useState } from "react";
 import { fetchAccessToken, syncStepsToBackend } from "@/lib/actions/user.actions";
 import { fetchStepCounts } from '@/lib/actions/google.actions';
-import { useClerk } from "@clerk/nextjs";
 import SyncButton from "../shared/SyncButton";
 
 
@@ -23,7 +22,6 @@ const SummaryCard = ({ gmail, updateLastSyncedDate} : any) => {
     });
     const {user, isLoading, isError} = useUser(gmail);
     const {allPlayers,isAllPlayersLoading,isErrorInAllPlayers} = useCompetition();
-    const userId = useClerk().user?.id as string;
 
     const [isSyncing, setIsSyncing] = useState(false);
     const [syncError, setSyncError] = useState(false);
@@ -58,10 +56,9 @@ const SummaryCard = ({ gmail, updateLastSyncedDate} : any) => {
         setSyncError(false);
 
         try {
-            const accessToken = await fetchAccessToken(userId);
+            const accessToken = await fetchAccessToken();
             const stepCounts = await fetchStepCounts(accessToken);
-            console.log(stepCounts);
-            
+            console.log(stepCounts)
             const syncResponse = await syncStepsToBackend(stepCounts.result, gmail);
             console.log(syncResponse);
 
@@ -74,8 +71,8 @@ const SummaryCard = ({ gmail, updateLastSyncedDate} : any) => {
             })
             user.points = syncResponse.totalPoints;
             user.steps = syncResponse.totalSteps;
-        } catch (error) {
-            console.error(error);
+        } catch (error:any) {
+            console.log(error.message);
             setIsSyncing(false);
             setSyncError(true);
         }

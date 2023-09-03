@@ -1,6 +1,9 @@
 "use server"
 import { apiURLs } from "@/constants";
 import axios from "axios";
+import clerk from "@clerk/clerk-sdk-node";
+import { auth } from "@clerk/nextjs";
+import { NextResponse } from "next/server";
 
 //function to fetch user
 export async function fetchUser(gmail:string){
@@ -45,24 +48,19 @@ export async function fetchAll():Promise<any> {
 
 }
 
-export async function fetchAccessToken(userId:string){
-  const CLERK_URL = `https://api.clerk.dev/v1/users/${userId}/oauth_access_tokens/oauth_google`;
+export async function fetchAccessToken(){
   try {
-    const response = await fetch(CLERK_URL,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.CLERK_SECRET_KEY}`,
-        },
-      }
-    )
-    const data = await response.json();
-    return data[0].token;
-
-  } catch (error) {
-    const errorInFetch = {
-      message: "Error fetching access token"
-    };
-    return errorInFetch;
+    const { userId } = auth();
+    const [OauthAccessToken] = await clerk.users.getUserOauthAccessToken(
+      userId || "",
+      "oauth_google"
+    );
+    const { token } = OauthAccessToken;
+    console.log("token", token)
+    return token;
+  } catch (error:any) {
+    throw new Error(error.message);
+    
   }
 }
 
