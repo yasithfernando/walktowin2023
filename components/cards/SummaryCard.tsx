@@ -84,12 +84,12 @@ const SummaryCard = ({ gmail, updateLastSyncedDate} : any) => {
                 
                 <div className="flex flex-col justify-center rounded-lg mt-2 w-full">
                     <div className={`flex flex-row items-center justify-center w-full mb-2`}>
-                        <h1 className="text-light-2 text-heading3-bold">Steps</h1>
+                        <h1 className="text-light-2 text-heading3-bold">Total Steps</h1>
                     </div>
 
                     <div className={`flex flex-col text-center w-full items-center justify-center`}>
                         <h1 className={`text-heading1-bold text-light-1 ${!user?.steps && 'h-12 w-1/2 rounded-lg animate-pulse bg-glassmorphism'}`}>{user?.steps}</h1>
-                        <p className=" text-gray-300 text-subtle-medium">You are on track!</p>
+                        <p className=" text-gray-300 text-subtle-medium">August-15 to September-15</p>
                     </div>
 
                     <div className="flex flex-row w-full justify-center mt-4">
