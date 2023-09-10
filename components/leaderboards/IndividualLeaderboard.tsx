@@ -7,7 +7,9 @@ const IndividualLeaderboard = ()=>{
     const {allPlayers} = useLeaderboardContext();
 
     const rankData = allPlayers ? allPlayers : [];
-    const profileImageUrl =  "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50";
+    const profileImageUrl1 =  `https://source.boringavatars.com/beam/50/xians%20walk?colors=582770,773D94,943D8A,C22760,E81764`;
+    const profileImageUrl2 =  `https://source.boringavatars.com/beam/50/xianssdf%20walk?colors=582770,773D94,943D8A,C22760,E81764`;
+    const profileImageUrl3 =  `https://source.boringavatars.com/beam/50/xianssaf%20walk?colors=582770,773D94,943D8A,C22760,E81764`;
 
     if(rankData.length === 0){
         return null;
@@ -26,7 +28,7 @@ const IndividualLeaderboard = ()=>{
 
                 <div id="second-place" className="flex items-end justify-center w-1/4 text-light-2">
                     <div className="flex flex-col justify-center items-center">
-                        <img src={profileImageUrl} alt="profile" className="rounded-full h-20 w-20 border-purple-400 border-2"/>
+                        <img src={profileImageUrl1} alt="profile" className="rounded-full h-20 w-20 border-purple-400 border-2"/>
                         <div className="flex justify-center items-center rounded-full w-7 h-7 bg-gradient-to-tl from-violet-500 to-fuchsia-500 -mt-4">
                             <p className="text-light-2 text-body-bold">2</p>
                         </div>
@@ -37,7 +39,7 @@ const IndividualLeaderboard = ()=>{
 
                 <div id="first-place" className="flex flex-col justify-center items-center w-2/4 lg:w-2/6 text-light-2">
                     <div className="flex flex-col justify-center items-center">
-                        <img src={profileImageUrl} alt="profile" className="rounded-full h-28 w-28 lg:h-32 lg:w-32 border-yellow-400 border-2"/>
+                        <img src={profileImageUrl2} alt="profile" className="rounded-full h-28 w-28 lg:h-32 lg:w-32 border-yellow-400 border-2"/>
                         <div className="flex justify-center items-center rounded-full w-7 h-7 bg-gradient-to-tl from-yellow-500 to-amber-500 -mt-4">
                             <p className="text-light-2 text-body-bold">1</p>
                         </div>
@@ -48,7 +50,7 @@ const IndividualLeaderboard = ()=>{
 
                 <div id="third-place" className="flex items-end justify-center w-1/4 text-light-2">
                     <div className="flex flex-col justify-center items-center">
-                        <img src={profileImageUrl} alt="profile" className="rounded-full h-20 w-20 border-purple-400 border-2"/>
+                        <img src={profileImageUrl3} alt="profile" className="rounded-full h-20 w-20 border-purple-400 border-2"/>
                         <div className="flex justify-center items-center rounded-full w-7 h-7 bg-gradient-to-tl from-violet-500 to-fuchsia-500 -mt-4">
                             <p className="text-light-2 text-body-bold">3</p>
                         </div>
@@ -66,7 +68,7 @@ const IndividualLeaderboard = ()=>{
             ): (<div></div>)} */}
             <div>
                 {rankData.map((player,index) => (
-                    <LeaderboardItem key={player.id} player={player} index={index}/>
+                    <LeaderboardItem key={player.id} player={player} index={index} isTeam={false}/>
                 ))}
             </div>
 

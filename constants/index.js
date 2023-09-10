@@ -1,6 +1,11 @@
+// export const competitionDetails = {
+//   startDate: 1692037800000,
+//   endDate: 1694716200000,
+// };
+
 export const competitionDetails = {
-  startDate: 1692037800000,
-  endDate: 1694716200000,
+  startDate: 1694370600000,
+  endDate: 1695666600000,
 };
 
 export const apiURLs = {
@@ -86,7 +91,7 @@ export const instanceOne = [
   "ruvindaisuru91@gmail.com",
   "riswanm@gmail.com",
   "annegomrz03@gmail.com",
-  "Madhuwanthiaah@gmail.com",
+  "madhuwanthiaah@gmail.com",
   "dinuperera77@gmail.com",
   "dilshanattanayaka@gmail.com",
   "arjunamx@gmail.com",
@@ -102,7 +107,7 @@ export const instanceOne = [
   "buddhilanj@gmail.com",
   "manthi.perera@gmail.com",
   "oshadhw@gmail.com",
-  "Ilakkiyaavimal@gmail.com",
+  "ilakkiyaavimal@gmail.com",
   "fahrym.mywork@gmail.com",
   "sapasindusandeepa@gmail.com",
   "sachithsujeewa@gmail.com",
@@ -112,7 +117,7 @@ export const instanceOne = [
   "rolandsoh96@gmail.com",
   "ranukap@gmail.com",
   "deeni.ami7@gmail.com",
-  "Eeshaniiranadheera@gmail.com",
+  "eeshaniiranadheera@gmail.com",
   "manulapannilage@gmail.com",
   "shiyansirisena@gmail.com",
   "crystalvanburen96@gmail.com",
@@ -171,7 +176,7 @@ export const instanceOne = [
 export const instanceTwo = [
   "rashansamith88@gmail.com",
   "dmadhushan@gmail.com",
-  "Chamikara98@gmail.com",
+  "chamikara98@gmail.com",
   "ishrathraji8@gmail.com",
   "sumithur98@gmail.com",
   "thasundamiru@gmail.com",
@@ -211,4 +216,28 @@ export const instanceTwo = [
   "sinithdj@gmail.com",
   "ishanyasith@gmail.com"
   
+];
+
+
+
+export const teamMarks = [
+  [60000, 100],
+  [48000, 70],
+  [40000, 50],
+  [32000, 40],
+  [24000, 30],
+  [16000, 20],
+  [8000, 10],
+  [4000, 5],
+];
+
+export const soloMarks = [
+  [15000, 100],
+  [12000, 70],
+  [10000, 50],
+  [8000, 40],
+  [6000, 30],
+  [4000, 20],
+  [2000, 10],
+  [1000, 5],
 ];

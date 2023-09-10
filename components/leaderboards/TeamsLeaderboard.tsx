@@ -40,7 +40,7 @@ const TeamsLeaderboard = ()=>{
                         <div className="flex justify-center items-center rounded-full w-7 h-7 bg-gradient-to-tl from-violet-500 to-fuchsia-500 -mt-4">
                             <p className="text-light-2 text-body-bold">2</p>
                         </div>
-                        <h1 className="text-light-2 text-body-bold">{rankData[0].name.split(' ')[0]}</h1>
+                        <h1 className="text-light-2 text-body-bold">{rankData[1].name.split(' ')[0]}</h1>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@ const TeamsLeaderboard = ()=>{
                         <div className="flex justify-center items-center rounded-full w-7 h-7 bg-gradient-to-tl from-violet-500 to-fuchsia-500 -mt-4">
                             <p className="text-light-2 text-body-bold">3</p>
                         </div>
-                        <h1 className="text-light-2 text-body-bold">{rankData[0].name.split(' ')[0]}</h1>
+                        <h1 className="text-light-2 text-body-bold">{rankData[2].name.split(' ')[0]}</h1>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@ const TeamsLeaderboard = ()=>{
             ): (<div></div>)} */}
             <div>
                 {rankData.map((player,index) => (
-                    <LeaderboardItem key={player._id} player={player} index={index}/>
+                    <LeaderboardItem key={player._id} player={player} index={index} isTeam={true}/>
                 ))}
             </div>
 

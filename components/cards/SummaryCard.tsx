@@ -8,6 +8,8 @@ import { syncStepsToBackend } from "@/lib/actions/user.actions";
 import { fetchStepCounts } from '@/lib/actions/google.actions';
 import { getAccessToken, getAuthUrl } from "@/lib/gapi";
 import { useRouter } from "next/navigation";
+import Warning from "../notifications/Warning";
+import Notification from "../notifications/Notification";
 
 
 interface Props {
@@ -62,7 +64,12 @@ const SummaryCard = ({ gmail, updateLastSyncedDate} : any) => {
     if(isError || isErrorInAllPlayers) return <div className="text-light-2 text-body-bold">Loading...</div>
 
     if(user.error){
-        return (<ErrorView errorMessage={user.message}></ErrorView>
+        return (
+            <div className="flex flex-col justify-center items-center text-center">
+                <Notification notification={user.message}></Notification>
+                <span className="text-light-2">Don't worry! you can still access the leaderboard </span>
+                <span className="text-light-2">Sign In with the correct gmail if you think you have registered </span>
+            </div>
         )
     }
 
@@ -159,7 +166,7 @@ const SummaryCard = ({ gmail, updateLastSyncedDate} : any) => {
                                 width={38} 
                                 height={38} 
                             />
-                            <h2 className={`text-light-2 text-body-bold ${!user?.points && 'h-6 w-1/2 rounded-lg bg-glassmorphism'}`}>{user?.points}</h2>
+                            <h2 className={`text-center text-light-2 text-body-bold ${!user?.points && 'h-6 w-1/2 rounded-lg bg-glassmorphism'}`}>{user?.points}</h2>
                             <h2 className="font-mono text-light-2 text-body-normal">Points</h2>
                         </div>
                         <div className="flex flex-col justify-center items-center w-full">
