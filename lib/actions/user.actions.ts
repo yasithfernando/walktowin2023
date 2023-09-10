@@ -1,5 +1,5 @@
 "use server"
-import { apiURLs } from "@/constants";
+import { apiURLs, instanceOne, instanceTwo } from "@/constants";
 import axios from "axios";
 import clerk from "@clerk/clerk-sdk-node";
 import { auth } from "@clerk/nextjs";
@@ -81,4 +81,19 @@ export async function syncStepsToBackend(stepCounts: any, gmail: string){
     })
 
     return response.data;
+}
+
+
+export async function mapUserToInstance(gmail:string){
+
+  if(instanceOne.includes(gmail)){
+    return 1;
+  }
+  else if(instanceTwo.includes(gmail)){
+    return 2;
+  }
+  else{
+    return 0;
+  }
+
 }

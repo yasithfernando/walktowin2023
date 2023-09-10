@@ -1,5 +1,4 @@
 import { apiURLs } from "@/constants";
-import { url } from "inspector";
 import useSWR from "swr";
 
 export const useUser = (gmail:string)=> {
@@ -10,7 +9,7 @@ export const useUser = (gmail:string)=> {
   const { data, error, isLoading } = useSWR(
     [apiURLs.getUser, gmail],
     ([url, gmail]) => fetcher(url, gmail),
-    { keepPreviousData: true }
+    { keepPreviousData: true}
   );
 
   return {
