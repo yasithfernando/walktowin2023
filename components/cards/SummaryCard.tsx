@@ -122,12 +122,12 @@ const SummaryCard = ({ gmail, updateLastSyncedDate} : any) => {
 
                 localStorage.setItem("lastSyncedDate", new Date().toLocaleString());
 
-                window.location.href = "http://localhost:3000/";
+                window.location.href = "https://vercel.live/link/walktowin2023-git-dev-ishanyasith.vercel.app?via=deployment-domains-list-branch";
 
                 return null;
             
             } else {
-                 window.location.href = "http://localhost:3000/";
+                 window.location.href = "https://vercel.live/link/walktowin2023-git-dev-ishanyasith.vercel.app?via=deployment-domains-list-branch";
                 //console.error("Authorization code not found in the URL.");
             }
         } catch (error) {
