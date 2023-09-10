@@ -9,7 +9,7 @@ const SummaryLoading = ()=>{
                 
                 <div className="flex flex-col justify-center rounded-lg mt-2 w-full">
                     <div className={`flex flex-row items-center justify-center w-full mb-2`}>
-                        <h1 className="text-light-2 text-heading3-bold mb-16">Steps</h1>
+                        <h1 className="text-light-2 text-heading3-bold mb-16">Total Steps</h1>
                     </div>
 
                     <div className={`flex flex-col text-center w-full items-center justify-center`}>

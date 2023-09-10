@@ -1,6 +1,6 @@
 "use client"
 import SummaryCard from "../cards/SummaryCard";
-import {useState } from "react";
+import {useEffect, useState } from "react";
 
 
 const SyncBanner  = ({gmail}:any)=>{    
@@ -15,6 +15,11 @@ const SyncBanner  = ({gmail}:any)=>{
     const updateLastSyncedDate = (lastSyncedDate:string)=>{
         setLastSyncedDate(lastSyncedDate);
     }
+
+    useEffect(()=>{
+        const lastSyncedDate = localStorage.getItem("lastSyncedDate");
+        setLastSyncedDate(lastSyncedDate);
+    },[])
 
     
     
