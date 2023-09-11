@@ -1,5 +1,5 @@
 
-import { ClerkProvider, RedirectToSignIn, SignIn, SignedIn, SignedOut, useUser } from '@clerk/nextjs'
+import { ClerkProvider, RedirectToSignIn, SignIn, SignedIn, SignedOut, currentUser, useUser } from '@clerk/nextjs'
 import '../globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -16,11 +16,21 @@ export const metadata = {
     description: 'A step challenge app for Xians'
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  let loggedInEmail = "";
+  try {
+    const loggedInUser = await currentUser();
+  
+    if(!loggedInUser) return null;
+  
+    loggedInEmail = loggedInUser.emailAddresses[0].emailAddress;
+  } catch (error) {
+    console.log("All Rights Reserved")
+  }
   return (
     <ClerkProvider appearance={{
         baseTheme: dark,
@@ -38,7 +48,7 @@ export default function RootLayout({
                 </div>
               </section>
 
-              <RightSidebar/>
+              <RightSidebar gmail={loggedInEmail}/>
 
             </main>
             <Bottombar/>

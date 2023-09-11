@@ -47,12 +47,9 @@ export const LeaderboardProvider: React.FC<{ children: ReactNode }> = ({ childre
             try {
           
                 if(!teams || !allPlayers){
-                    console.log("fetch teams")
                     const {updatedTeams, updatedAllPlayers} = await fetchAll();
                     setTeams(updatedTeams);
                     setAllPlayers(updatedAllPlayers);
-                    console.log("teamsData", teams);
-                    console.log("allPlayers", allPlayers);
                 }
 
             } catch (error) {

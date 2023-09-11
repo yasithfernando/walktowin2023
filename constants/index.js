@@ -4,8 +4,8 @@
 // };
 
 export const competitionDetails = {
-  startDate: 1694370600000,
-  endDate: 1695666600000,
+  startDate: 1694457000000, //Tue Sep 12 2023 00:00:00 GMT+0530 (India Standard Time)
+  endDate: 1695666600000, //Tue Sep 26 2023 00:00:00 GMT+0530 (India Standard Time)
 };
 
 export const apiURLs = {
@@ -90,7 +90,7 @@ export const instanceOne = [
   "bishma.nishadi11@gmail.com",
   "ruvindaisuru91@gmail.com",
   "riswanm@gmail.com",
-  "annegomrz03@gmail.com",
+  "annegomez03@gmail.com",
   "madhuwanthiaah@gmail.com",
   "dinuperera77@gmail.com",
   "dilshanattanayaka@gmail.com",
@@ -203,6 +203,7 @@ export const instanceTwo = [
   "sjroshanth@gmail.com",
   "suvimalirajapaksha@gmail.com",
   "akilaweeratunga@gmail.com",
+  "itrathnasekara@gmail.com",
   "it.rathnasekara@gmail.com",
   "pratheesprapa98@gmail.com",
   "lahirudfe@gmail.com",
@@ -213,6 +214,13 @@ export const instanceTwo = [
   "keshavkumaresan1002@gmail.com",
   "kcdilhari@gmail.com",
   "nishara.ramasinghe@gmail.com",
+  "sithum18raveesha@gmail.com",
+  "sachinshehan20@gmail.com",
+  "hhasankae@gmail.com",
+  "lahiruviraj41@gmail.com",
+  "isuruariyarathna2000@gmail.com",
+  "dgamhatha@gmail.com",
+  "raashidmansoor@gmail.com",
   "sinithdj@gmail.com",
   "ishanyasith@gmail.com"
   

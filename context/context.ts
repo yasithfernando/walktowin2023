@@ -3,8 +3,8 @@ import useSWR from "swr";
 
 export const useUser = (gmail:string)=> {
 
-    const fetcher = (url: string, gmail: string) =>
-      fetch(url, { headers: { gmail: gmail } }).then((res) => res.json());
+  const fetcher = (url: string, gmail: string) =>
+    fetch(url, { headers: { gmail: gmail } }).then((res) => res.json());
 
   const { data, error, isLoading } = useSWR(
     [apiURLs.getUser, gmail],
