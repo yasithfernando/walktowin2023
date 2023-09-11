@@ -30,17 +30,33 @@ const LeaderboardItem = ({player, index, isTeam}:Props) => {
   const [teamMembers, setTeamMembers] = useState([{}]);
 
   async function getPlayerHistory(){
-    const response = await fetch(`${apiURLs.getAnyPlayer}${player.id}`);
-    const data = await response.json();
-    const totalSteps = data.total_steps;
-    return totalSteps;
+    try {
+      const response = await fetch(`${apiURLs.getAnyPlayer}${player.id}`);
+
+      if(!response.ok){
+        return null;
+      }
+      const data = await response.json();
+      const totalSteps = data.total_steps;
+      return totalSteps;
+    } catch (error) {
+      return null;
+    }
   }
 
   async function getTeamHistory(){
-    const response = await fetch(`${apiURLs.getTeam}${player._id}`);
-    const data = await response.json();
-    const teamData = data;
-    return teamData;
+    try {
+      const response = await fetch(`${apiURLs.getTeam}${player._id}`);
+
+      if(!response.ok){
+        return null;
+      }
+      const data = await response.json();
+      const teamData = data;
+      return teamData;
+    } catch (error) {
+      
+    }
   }
 
   useEffect(() => {
