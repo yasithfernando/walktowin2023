@@ -1,9 +1,6 @@
 
 import SyncBanner from "@/components/banners/SyncBanner";
-import SummaryCard from "@/components/cards/SummaryCard";
-import { UserButton, currentUser } from "@clerk/nextjs";
-import { Suspense } from "react";
-import Loading from "./loading";
+import { currentUser } from "@clerk/nextjs";
 import ErrorView from "@/components/notifications/ErrorView";
 
 
@@ -25,6 +22,7 @@ async function Home() {
     <div>
       {/* <h1 className="head-text text-left">Home</h1> */}
       <SyncBanner gmail={loggedInEmail}/>
+      
     </div>
   )
 }
