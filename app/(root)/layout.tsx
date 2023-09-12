@@ -25,7 +25,18 @@ export default async function RootLayout({
   try {
     const loggedInUser = await currentUser();
   
-    if(!loggedInUser) return null;
+    if(!loggedInUser) {
+      console.log("User")
+      return (
+        <ClerkProvider>
+          <html lang="en">
+            <body className={inter.className}>
+              <RedirectToSignIn/>
+            </body>
+          </html>
+        </ClerkProvider>
+      )
+    };
   
     loggedInEmail = loggedInUser.emailAddresses[0].emailAddress;
   } catch (error) {
