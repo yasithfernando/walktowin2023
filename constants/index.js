@@ -81,7 +81,7 @@ export const instanceOne = [
   "kavindasenarathne94@gmail.com",
   "srilalsachintha@gmail.com",
   "tulinisasanshi@gmail.com",
-  "Kushan989@gmail.com",
+  "kushan989@gmail.com",
   "binaramedawatta@gmail.com",
   "kavindu.prabhashitha@gmail.com",
   "malith.sandagiri@gmail.com",
