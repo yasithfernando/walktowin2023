@@ -222,7 +222,8 @@ export const instanceTwo = [
   "dgamhatha@gmail.com",
   "raashidmansoor@gmail.com",
   "sinithdj@gmail.com",
-  "ishanyasith@gmail.com"
+  "ishanyasith@gmail.com",
+  "isirathiranjaya@gmail.com"
   
 ];
 
