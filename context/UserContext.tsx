@@ -14,6 +14,7 @@ interface UserData {
   name: string;
   steps: number;
   points: number;
+  gender: string;
 }
 
 interface LeaderboardContextType {

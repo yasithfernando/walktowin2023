@@ -1,11 +1,5 @@
 import Player from '@/constants/player';
-import React, { use, useEffect, useState } from 'react';
-
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/radix-ui/Popover"
+import React, {useEffect, useState } from 'react';
 
 import {
   Accordion,

@@ -56,9 +56,11 @@ export const sidebarLinks = [
 ];
 
 export const leaderboardTabs = [
-  //{ route: "/female-leaderboard", label: "Female", icon: "/assets/female-icon.png" },
+  //{ route: "/leaderboard/individual", label: "Individual", icon: "/assets/male-icon.png" },
   { route: "/leaderboard/teams", label: "Teams", icon: "/assets/teams-icon.png" },
-  { route: "/leaderboard/individual", label: "Individual", icon: "/assets/male-icon.png" },
+  { route: "/leaderboard/male", label: "Male", icon: "/assets/female-icon.png" },
+  { route: "/leaderboard/female", label: "Female", icon: "/assets/female-icon.png" },
+
 ]
 
 export const profileTabs = [

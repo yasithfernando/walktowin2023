@@ -8,6 +8,7 @@ interface UserData {
   name: string;
   steps: number;
   points: number;
+  gender: string;
   //stepsHistory: { date: string; steps: number }[];
 }
 

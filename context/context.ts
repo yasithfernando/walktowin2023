@@ -19,6 +19,30 @@ export const useUser = (gmail:string)=> {
   };
 }
 
+export const useMalePlayers = ()=>{
+    const fetcher = (url:string)=> 
+        fetch(url).then((res) => res.json());
+
+    const {data, error, isLoading} = useSWR(apiURLs.getMalePlayers, fetcher);
+
+    return {
+        malePlayers: data,
+        isMalePlayersLoading: isLoading,
+        isErrorInMalePlayers: error
+};}
+
+export const useFemalePlayers = ()=>{
+    const fetcher = (url:string)=> 
+        fetch(url).then((res) => res.json());
+
+    const {data, error, isLoading} = useSWR(apiURLs.getFemalePlayers, fetcher);
+
+    return {
+        femalePlayers: data,
+        isFemalePlayersLoading: isLoading,
+        isErrorInFemalePlayers: error
+};}
+
 
 export const useCompetition = ()=>{
     const fetcher = (url:string)=> 
