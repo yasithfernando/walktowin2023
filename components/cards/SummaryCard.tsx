@@ -176,7 +176,8 @@ const SummaryCard = ({ gmail, updateLastSyncedDate} : any) => {
                                 width={38} 
                                 height={38} 
                             />
-                            <h2 className="text-light-2 text-body-bold">{rank}/{numberOfPlayers}</h2>
+                            {/* <h2 className="text-light-2 text-body-bold">{rank}/{numberOfPlayers}</h2> */}
+                            <span className="text-light-2 text-body-normal">🔒</span>
                             <h2 className="font-mono text-light-2 text-body-normal">Rank</h2>
                         </div>
                     </div>
