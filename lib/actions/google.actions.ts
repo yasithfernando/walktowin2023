@@ -23,7 +23,7 @@ const requestBodytoFilterUserInput = {
 
 export const fetchStepCounts = async (accessToken: string) => {
   try {
-    console.log(accessToken)
+    // console.log(accessToken)
     const response = await fetch(BASE_URL, {
       method: "POST",
       headers: {

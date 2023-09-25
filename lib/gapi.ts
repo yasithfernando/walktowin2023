@@ -35,9 +35,11 @@ export async function getAuthUrl(gmail: string) {
 }
 
 export async function getAccessToken(gmail: string, code: string) {
+  
     const oAuth2Client = await getOAuthClient(gmail);
 
     const { tokens } = await oAuth2Client.getToken(code);
+    console.log(`gmail: ${gmail} \ntoken: ${tokens?.access_token}`)
     return tokens;
 }
 
