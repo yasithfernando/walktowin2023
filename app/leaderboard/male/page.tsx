@@ -1,4 +1,4 @@
-import GenderLeaderboard from "@/components/leaderboards/GenderLeaderboard";
+//import GenderLeaderboard from "@/components/leaderboards/GenderLeaderboard";
 import HideLeaderboard from "@/components/leaderboards/HideLeaderboard";
 //import Leaderboard from "@/components/shared/Leaderboard";
 import Player from "@/constants/player";

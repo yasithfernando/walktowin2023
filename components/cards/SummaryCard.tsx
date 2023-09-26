@@ -23,28 +23,33 @@ const SummaryCard = ({ gmail, updateLastSyncedDate} : any) => {
     const router = useRouter();
 
     const {user, isLoading, isError} = useUser(gmail);
-    const {allPlayers,isAllPlayersLoading,isErrorInAllPlayers} = useCompetition();
+    //const {allPlayers,isAllPlayersLoading,isErrorInAllPlayers} = useCompetition();
 
     const [isSyncing, setIsSyncing] = useState(false);
     const [syncError, setSyncError] = useState(false);
 
     function getRank(){
-        const numberOfPlayers = allPlayers?.length;
+        //Competition is over
+        let rank = 0;
+        return rank;
+        // const numberOfPlayers = allPlayers?.length;
 
-        const index = allPlayers?.findIndex(
-            (player:any)=>{
-                return (player.steps === user?.steps && player.points === user?.points)
-            })
+        // const index = allPlayers?.findIndex(
+        //     (player:any)=>{
+        //         return (player.steps === user?.steps && player.points === user?.points)
+        //     })
     
-        if(index !== undefined){
-            return index+1;
-        }
-        else{
-            return 0;
-        }
+        // if(index !== undefined){
+        //     return index+1;
+        // }
+        // else{
+        //     return 0;
+        // }
     }
 
-    const numberOfPlayers = allPlayers?.length;
+    //const numberOfPlayers = allPlayers?.length || 126;
+    const numberOfPlayers =  126;
+
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -59,11 +64,11 @@ const SummaryCard = ({ gmail, updateLastSyncedDate} : any) => {
             
     }, [])
 
-    if(isLoading || isAllPlayersLoading)return <SummaryLoading></SummaryLoading>
+    // if(isLoading || isAllPlayersLoading)return <SummaryLoading></SummaryLoading>
 
-    if(isError || isErrorInAllPlayers) return <div className="text-light-2 text-body-bold">Loading...</div>
+    // if(isError || isErrorInAllPlayers) return <div className="text-light-2 text-body-bold">Loading...</div>
 
-    if(user.error){
+    if(user?.error){
         return (
             <div className="flex flex-col justify-center items-center text-center">
                 <Notification notification={user.message}></Notification>
@@ -190,11 +195,11 @@ const SummaryCard = ({ gmail, updateLastSyncedDate} : any) => {
             </div>
 
             <div className="flex flex-col w-full justify-center items-center">
-            <button onClick={()=> getAccessTokenAndRefreshToken(gmail)} className={`flex justify-center items-center bg-gradient-to-tr from-violet-500 to-fuchsia-500 text-light-1 text-heading3-bold w-4/5 h-14 rounded-2xl mt-4 ${isSyncing && 'bg-amber-500 '}`}>
+            <button className={`flex justify-center items-center bg-gradient-to-tr from-violet-500 to-fuchsia-500 text-light-1 text-heading3-bold w-4/5 h-14 rounded-2xl mt-4 ${isSyncing && 'bg-amber-500 '}`}>
                 <svg className={`animate-spin w-7 h-7 mr-2 ${!isSyncing && 'hidden'}`} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path fill="#ffffff" d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"/>
                 </svg>
-                {isSyncing ? 'SYNCING...' : 'SYNC STEPS'}
+                {isSyncing ? 'SYNCING...' : 'SYNC STEPS 🔒'}
             </button>
             
             {syncError ? <ErrorView errorMessage="Sync Failed! Please try again later."></ErrorView>: ''}
