@@ -1,6 +1,6 @@
 
 import HideLeaderboard from "@/components/leaderboards/HideLeaderboard";
-import TeamsLeaderboard from "@/components/leaderboards/TeamsLeaderboard";
+//import TeamsLeaderboard from "@/components/leaderboards/TeamsLeaderboard";
 import Player from "@/constants/player";
 import { testRankData } from "@/constants/testData";
 

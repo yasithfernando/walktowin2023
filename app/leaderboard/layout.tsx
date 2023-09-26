@@ -8,7 +8,7 @@ import LeftSidebar from '@/components/shared/LeftSidebar'
 import RightSidebar from '@/components/shared/RightSidebar'
 import Bottombar from '@/components/shared/Bottombar'
 import LederboardTitleCard from '@/components/cards/LeaderboardTitleCard'
-import { LeaderboardProvider } from '@/context/LeaderboardContext'
+// import { LeaderboardProvider } from '@/context/LeaderboardContext'
 import { Suspense } from 'react'
 import Loading from './loading'
 
@@ -48,9 +48,9 @@ export default async function RootLayout({
                 <LederboardTitleCard/>
                 <div className='w-full max-w-4xl'>
                   <Suspense fallback={<Loading/>}>
-                     <LeaderboardProvider>
+                     {/* <LeaderboardProvider> */}
                       {children}
-                    </LeaderboardProvider>
+                    {/* </LeaderboardProvider> */}
                   </Suspense>
                 </div>
               </section>
